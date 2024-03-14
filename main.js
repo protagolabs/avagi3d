@@ -141,7 +141,7 @@ async function init() {
   const sound = new THREE.Audio(listener);
   // load a sound and set it as the Audio object's buffer
   const audioLoader = new THREE.AudioLoader();
-  audioLoader.load("public/sound.mp3", function (buffer) {
+  audioLoader.load("public/english_voice_male_p3_neutral.wav", function (buffer) {
     sound.setBuffer(buffer);
     sound.setLoop(false);
     sound.setVolume(0.5);
