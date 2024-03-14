@@ -1,5 +1,6 @@
 This example shows how to load [Avagi3D] avatars using three.js.
 
+![alt text](image.png)
 
 # Build
 
