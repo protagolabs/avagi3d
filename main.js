@@ -34,9 +34,32 @@ async function loadAvatar(url) {
     }
   });
 
+  
+
+  
   animationGroup.add(model);
 
   return model;
+}
+
+function playScene() {
+  var music = document.getElementById("music");
+  music.classList.add("playing");
+  playBtn.disabled = true;
+  // create an AudioListener and add it to the camera
+  const listener = new THREE.AudioListener();
+  camera.add(listener);
+  // create a global audio source
+  const sound = new THREE.Audio(listener);
+  // load a sound and set it as the Audio object's buffer
+  const audioLoader = new THREE.AudioLoader();
+  audioLoader.load("public/sound.mp3", function (buffer) {
+    sound.setBuffer(buffer);
+    sound.setLoop(false);
+    sound.setVolume(0.5);
+    dur = buffer.duration.toFixed(0); // 176s
+    sound.play();
+  });
 }
 
 function filterAnimation(animation) {
@@ -111,9 +134,26 @@ async function init() {
   mesh.receiveShadow = true;
   scene.add(mesh);
 
+  // create an AudioListener and add it to the camera
+  const listener = new THREE.AudioListener();
+  camera.add(listener);
+  // create a global audio source
+  const sound = new THREE.Audio(listener);
+  // load a sound and set it as the Audio object's buffer
+  const audioLoader = new THREE.AudioLoader();
+  audioLoader.load("public/sound.mp3", function (buffer) {
+    sound.setBuffer(buffer);
+    sound.setLoop(false);
+    sound.setVolume(0.5);
+    // dur = buffer.duration.toFixed(0); // 176s
+    // sound.play();
+  });
+
   // Load default avatar
   currentAvatar = await loadAvatar("public/demo.glb");
-
+  
+  // currentAvatar.add (sound)
+ 
   // Load default animation
   const loader = new GLTFLoader();
   loader.load("public/demo.glb", function (gltf) {
@@ -128,31 +168,33 @@ async function init() {
 
     idleAction = action;
 
-    idleAction.play();
+    idleAction.setLoop( THREE.LoopOnce );
+
+    // idleAction.play();
+
+
+    document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+
+    function onDocumentMouseDown( event ) {
+    
+      if ( action !== null ) {
+    
+        action.stop();
+        sound.stop();
+        action.play();
+        sound.play(); 
+      }
+    }    
 
   });
 
-  // // create an AudioListener and add it to the camera
-  // const listener = new THREE.AudioListener();
-  // camera.add( listener );
-
-  // // create a global audio source
-  // const sound = new THREE.Audio( listener );
-
-  // // load a sound and set it as the Audio object's buffer
-  // const audioLoader = new THREE.AudioLoader();
-  // audioLoader.load( 'sounds/ambient.ogg', function( buffer ) {
-  //   sound.setBuffer( buffer );
-  //   sound.setLoop( true );
-  //   sound.setVolume( 0.5 );
-  //   sound.play();
-  // });
 
   stats = new Stats();
   container.appendChild(stats.dom);
 
   window.addEventListener("resize", onWindowResize);
 
+  
   animate();
 
 
@@ -168,6 +210,7 @@ function onWindowResize() {
 
 function animate() {
   // Render loop
+
 
   requestAnimationFrame(animate);
 
