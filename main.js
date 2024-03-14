@@ -114,13 +114,38 @@ async function init() {
   // Load default avatar
   currentAvatar = await loadAvatar("public/demo.glb");
 
-  // // Load default animation
-  // const loader = new GLTFLoader();
-  // loader.load("public/demo.glb", function (gltf) {
-  //   const clip = filterAnimation(gltf.animations[0]);
-  //   const action = mixer.clipAction(clip);
-  //   idleAction = action;
-  //   idleAction.play();
+  // Load default animation
+  const loader = new GLTFLoader();
+  loader.load("public/demo.glb", function (gltf) {
+
+    // const clip = filterAnimation(gltf.animations[0]);
+  
+    // const action = mixer.clipAction(clip);
+
+    const clip = gltf.animations[0];
+
+    const action = mixer.clipAction(clip);
+
+    idleAction = action;
+
+    idleAction.play();
+
+  });
+
+  // // create an AudioListener and add it to the camera
+  // const listener = new THREE.AudioListener();
+  // camera.add( listener );
+
+  // // create a global audio source
+  // const sound = new THREE.Audio( listener );
+
+  // // load a sound and set it as the Audio object's buffer
+  // const audioLoader = new THREE.AudioLoader();
+  // audioLoader.load( 'sounds/ambient.ogg', function( buffer ) {
+  //   sound.setBuffer( buffer );
+  //   sound.setLoop( true );
+  //   sound.setVolume( 0.5 );
+  //   sound.play();
   // });
 
   stats = new Stats();
@@ -129,6 +154,8 @@ async function init() {
   window.addEventListener("resize", onWindowResize);
 
   animate();
+
+
 }
 
 function onWindowResize() {
@@ -137,6 +164,7 @@ function onWindowResize() {
 
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
+
 
 function animate() {
   // Render loop
