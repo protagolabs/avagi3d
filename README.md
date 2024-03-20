@@ -17,3 +17,8 @@ ws
 ```
 
 The server will open up at `http://localhost:8000`
+
+# Acknowledgments
+we appreciate the following sources for creating this rep:
+
+* [avaturn-threejs-example](https://github.com/avaturn/avaturn-threejs-example)
