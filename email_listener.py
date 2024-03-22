@@ -29,14 +29,14 @@ async def main(data_path):
 
         url = "http://3.8.207.30:8777/images"
         params = {
-            "current_date_str": "2024-03-21"
+            "current_date_str": "2024-03-22"
         }
 
         async with httpx.AsyncClient() as client:
             response = await client.get(url, params=params)
             data = response.json()
         
-        # print(data)
+        print(data)
         senders = []
         senders_num = {}
         for d in data:
@@ -122,7 +122,8 @@ async def main(data_path):
 
 if __name__ == "__main__":
 
-    data_path = "/home/xing.di/Documents/GitHub/avagi3d/images"
+    cwd = os.getcwd()
+    data_path = os.path.join(cwd, "images")
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main(data_path))
 
