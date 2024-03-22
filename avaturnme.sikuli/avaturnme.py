@@ -1,51 +1,56 @@
 import os
 import shutil
+import time
 # while True:
 
 names = os.listdir("images/")
+cnames = os.listdir("charactors/")
+cwd = os.getcwd()
 
-for name in names:
-    print(name)
-    if not os.path.exists(os.path.join("charactors/", name)):
-        os.makedirs(os.path.join("charactors/" + name))  
-    click(Region(1025,834,214,171))
-    click(Location(2018, 623))
-    click(Location(1593, 461))
-    click(Region(1365,713,171,45))
-    click(Region(2092,512,38,49))
-    paste("image2.jpeg")
-    doubleClick(Region(1535,636,686,26))
-    
-    click(Region(1710,354,159,234))
-    click(Region(1364,714,176,45))
-    click(Region(2084,513,55,53))
-    paste("image1.jpeg")
-    doubleClick(Region(1536,638,683,24))
-    
-    click(Region(1905,343,163,245))
-    click(Region(1367,715,168,39))
-    click(Region(2077,510,70,58))
-    paste("image0.jpeg")
-    doubleClick(Region(1538,630,684,39))
+while True:
+    selected_names = [x for x in names if not x in cnames]
+    if selected_names:
+        
+        for name in selected_names:
+            print(name)
+            if not os.path.exists(os.path.join("charactors/", name)):
+                os.makedirs(os.path.join("charactors/" + name))  
+            click(Region(1057,872,89,116))
+            click(Region(1761,286,493,696))
+            click(Region(1465,347,197,278))
+            click(Region(1107,636,858,41))
+            paste(os.path.join(cwd, "images", name, "image0.png"))
+            click(Region(1956,661,103,46))
+        
+            click(Region(1681,345,181,286))
+            click(Region(1107,636,858,41))
+            paste(os.path.join(cwd, "images", name, "image1.png"))
+            click(Region(1956,661,103,46))
+            
+            click(Region(1857,329,220,286))
+            click(Region(1107,636,858,41))
+            paste(os.path.join(cwd, "images", name, "image2.png"))
+            click(Region(1956,661,103,46))
+        
+            
+         
+        
+        
+            
+        
+            click(Region(1553,836,292,57))
+            click(Region(1626,1260,281,107))
+            sleep(45)
+        
+            
+            click(Region(1840,1304,80,81))
+            click(Region(1394,556,307,174))
+        
+            
+            sleep(10)    
+            click(Region(2099,513,74,100))
+            click(Region(991,109,62,103))
+        
+            shutil.move(r"C:\Users\detio\Downloads\model.glb", os.path.join(cwd, "charactors", name,  name+".glb"))
 
-
-    
-
-    click(Location(1728, 853))
-    click(Region(1670,1254,244,93))
-    sleep(40)
-
-    
-    click(Region(1868,1304,54,63))
-    click(Region(1406,510,368,254))
-
-    
-    sleep(10)    
-    click(Region(2119,513,81,74))
-    click(Region(1053,120,82,67))
-    
-
-    shutil.move("/home/xing.di/Downloads/model.glb", "/home/xing.di/Downloads/{}.glb".format(name))
-
-    
    # r.click()
