@@ -18,7 +18,9 @@ ws
 
 The server will open up at `http://localhost:8000`
 
+
 # Roadmap
+- [x] Add the email listener script which could receive the user images automatically.
 - [x] Automatically generate the coarse 3D static model
 - [x] Automatically generate the refined 3D static model
 - [] Combine coarse and refined models pipline
