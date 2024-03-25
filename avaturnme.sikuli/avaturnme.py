@@ -51,6 +51,6 @@ while True:
             click(Region(2099,513,74,100))
             click(Region(991,109,62,103))
         
-            shutil.move(r"C:\Users\detio\Downloads\model.glb", os.path.join(cwd, "charactors", name,  name+".glb"))
+            shutil.move(r"C:\Users\detio\Downloads\model.glb", os.path.join(cwd, "charactors", name,  "model.glb"))
 
    # r.click()
